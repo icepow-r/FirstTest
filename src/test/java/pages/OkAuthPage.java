@@ -26,6 +26,7 @@ public class OkAuthPage {
 
 
     public OkAuthPage enterCredentials(String login, String password) {
+        loginInput.shouldBe(visible);
         loginInput.setValue(login);
         passwordInput.setValue(password);
         return this;

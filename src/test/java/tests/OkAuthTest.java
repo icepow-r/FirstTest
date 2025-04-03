@@ -39,6 +39,7 @@ public class OkAuthTest {
 
     @Test
     public void testInvalidLoginWarningMessage() {
+        Selenide.clearBrowserCookies();
         var okAuthPage = new OkAuthPage();
 
         okAuthPage.open();
