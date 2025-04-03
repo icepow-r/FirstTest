@@ -1,9 +1,21 @@
 package tests;
 
+import com.codeborne.selenide.Selenide;
+import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.chrome.ChromeOptions;
+import com.codeborne.selenide.Configuration;
 import pages.OkAuthPage;
 import org.junit.jupiter.api.Test;
 
 public class OkAuthTest {
+
+    @BeforeAll
+    public static void setUp() {
+        Configuration.browserCapabilities = new ChromeOptions()
+                .addArguments("--lang=en_US");
+        Configuration.browser = "chrome";
+    }
+
     @Test
     public void testLoginWithWrongPassword() {
         var okAuthPage = new OkAuthPage();
