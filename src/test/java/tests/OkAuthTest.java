@@ -2,12 +2,18 @@ package tests;
 
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.chrome.ChromeOptions;
 import com.codeborne.selenide.Configuration;
 import pages.OkAuthPage;
 import org.junit.jupiter.api.Test;
 
 public class OkAuthTest {
+
+    @BeforeEach
+    public void before() {
+        Selenide.open("https://ok.ru");
+    }
 
     @BeforeAll
     public static void setUp() {
@@ -20,7 +26,6 @@ public class OkAuthTest {
     public void testLoginWithWrongPassword() {
         var okAuthPage = new OkAuthPage();
         okAuthPage
-                .open()
                 .enterCredentials("Login", "Wrong password")
                 .loginClick()
                 .checkErrorMessage("Incorrect username and/or password");
@@ -30,7 +35,6 @@ public class OkAuthTest {
     public void testChangeFocusEmptyPassword() {
         var okAuthPage = new OkAuthPage();
         okAuthPage
-                .open()
                 .enterCredentials("Login", "")
                 .loginClick()
                 .checkFocusOnPassword()
@@ -42,7 +46,6 @@ public class OkAuthTest {
         Selenide.clearBrowserCookies();
         var okAuthPage = new OkAuthPage();
 
-        okAuthPage.open();
         for (int i = 0; i < 3; i++) {
             okAuthPage
                     .enterCredentials("Login", "Wrong password")
@@ -55,7 +58,6 @@ public class OkAuthTest {
     public void testCustomerSupportFormFields() {
         var okAuthPage = new OkAuthPage();
         var restoreAccessPage = okAuthPage
-                .open()
                 .restoreAccessButtonClick();
 
         restoreAccessPage
@@ -66,8 +68,7 @@ public class OkAuthTest {
     @Test
     public void testEmptyRecoveryEmailField() {
         var okAuthPage = new OkAuthPage();
-        var restoreAccessPage =  okAuthPage
-                .open()
+        var restoreAccessPage = okAuthPage
                 .restoreAccessButtonClick();
         restoreAccessPage.emailButtonClick()
                 .getCodeButtonClick()

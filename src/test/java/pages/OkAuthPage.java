@@ -1,30 +1,17 @@
 package pages;
 
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class OkAuthPage {
-    private final SelenideElement cookieAcceptButton = $("button[tsid='cookie-banner_button_2e0c18']");
     private final SelenideElement loginInput = $("#field_email");
     private final SelenideElement passwordInput = $("#field_password");
     private final SelenideElement loginButton = $("input[data-l='t,sign_in']");
     private final SelenideElement errorMessage = $("div[class='input-e login_error']");
     private final SelenideElement restoreAccessMessage = $("div[class='stub']");
     private final SelenideElement restoreAccessButton = $("a[data-l='t,restore']");
-
-    public OkAuthPage open() {
-        Selenide.open("https://ok.ru");
-
-        if (cookieAcceptButton.exists()) {
-            cookieAcceptButton.shouldBe(visible, enabled).click();
-        }
-
-        return this;
-    }
-
 
     public OkAuthPage enterCredentials(String login, String password) {
         loginInput.shouldBe(visible).setValue(login);
