@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -26,14 +27,13 @@ public class OkAuthPage {
 
 
     public OkAuthPage enterCredentials(String login, String password) {
-        loginInput.shouldBe(visible);
-        loginInput.setValue(login);
-        passwordInput.setValue(password);
+        loginInput.shouldBe(visible).setValue(login);
+        passwordInput.shouldBe(visible).setValue(password);
         return this;
     }
 
     public OkAuthPage loginClick() {
-        loginButton.click();
+        loginButton.shouldBe(visible).click();
         return this;
     }
 
@@ -69,22 +69,22 @@ public class OkAuthPage {
     }
 
     public OkAuthPage restoreAccessButtonClick() {
-        $("a[data-l='t,restore']").click();
+        $("a[data-l='t,restore']").shouldBe(visible).click();
         return this;
     }
 
     public OkAuthPage contactSupportButtonClick() {
-        $("a[tsid='support-link_link_5998d4']").click();
+        $("a[tsid='support-link_link_5998d4']").shouldBe(visible).click();
         return this;
     }
 
     public OkAuthPage emailButtonClick() {
-        $("a[data-l='t,email']").click();
+        $("a[data-l='t,email']").shouldBe(visible).click();
         return this;
     }
 
     public OkAuthPage getCodeButtonClick() {
-        $("input[tsid='recovery-start-email-verification-block_input_7f2bff']").click();
+        $("input[tsid='recovery-start-email-verification-block_input_7f2bff']").shouldBe(visible).click();
         return this;
     }
 }
