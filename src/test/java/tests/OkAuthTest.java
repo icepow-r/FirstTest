@@ -54,9 +54,11 @@ public class OkAuthTest {
     @Test
     public void testCustomerSupportFormFields() {
         var okAuthPage = new OkAuthPage();
-        okAuthPage
+        var restoreAccessPage = okAuthPage
                 .open()
-                .restoreAccessButtonClick()
+                .restoreAccessButtonClick();
+
+        restoreAccessPage
                 .contactSupportButtonClick()
                 .checkContactSupportFormFields();
     }
@@ -64,10 +66,10 @@ public class OkAuthTest {
     @Test
     public void testEmptyRecoveryEmailField() {
         var okAuthPage = new OkAuthPage();
-        okAuthPage
+        var restoreAccessPage =  okAuthPage
                 .open()
-                .restoreAccessButtonClick()
-                .emailButtonClick()
+                .restoreAccessButtonClick();
+        restoreAccessPage.emailButtonClick()
                 .getCodeButtonClick()
                 .checkRestoreEmailErrorMessage("Incorrect e-mail format");
     }
