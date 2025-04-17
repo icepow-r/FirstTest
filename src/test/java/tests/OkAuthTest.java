@@ -98,6 +98,7 @@ public class OkAuthTest {
             okAuthPage
                     .restoreAccessButtonClick()
                     .emailButtonClick()
+                    .setEmailValue(email)
                     .getCodeButtonClick()
                     .checkRestoreEmailErrorMessage("Incorrect e-mail format");
         }

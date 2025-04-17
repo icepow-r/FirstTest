@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -10,12 +11,18 @@ public class RestoreAccessPage {
     private final SelenideElement contactSupportButton = $("a[tsid='support-link_link_5998d4']");
     private final SelenideElement recoveryEmailButton = $("a[data-l='t,email']");
     private final SelenideElement getCodeButton = $("input[tsid='recovery-start-email-verification-block_input_7f2bff']");
+    private final SelenideElement emailField = $("#field_email");
     private final SelenideElement restoreEmailErrorMessage = $("div[class='input-e']");
 
 
     public SupportPage contactSupportButtonClick() {
         contactSupportButton.shouldBe(visible).click();
         return new SupportPage();
+    }
+
+    public RestoreAccessPage setEmailValue(String email) {
+        emailField.sendKeys(email);
+        return this;
     }
 
     public RestoreAccessPage emailButtonClick() {
