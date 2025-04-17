@@ -16,7 +16,7 @@ public class RestoreAccessPage {
 
 
     public SupportPage contactSupportButtonClick() {
-        contactSupportButton.shouldBe(visible).click();
+        contactSupportButton.shouldBe(visible.because("Кнопка связи с поддержкой не отображается")).click();
         return new SupportPage();
     }
 
@@ -26,18 +26,18 @@ public class RestoreAccessPage {
     }
 
     public RestoreAccessPage emailButtonClick() {
-        recoveryEmailButton.shouldBe(visible).click();
+        recoveryEmailButton.shouldBe(visible.because("Кнопка восстановления по email не отображается")).click();
         return this;
     }
 
     public RestoreAccessPage getCodeButtonClick() {
-        getCodeButton.shouldBe(visible).click();
+        getCodeButton.shouldBe(visible.because("Кнопка получения кода не отображается")).click();
         return this;
     }
 
     public RestoreAccessPage checkRestoreEmailErrorMessage(String expectedError) {
-        restoreEmailErrorMessage.shouldBe(visible);
-        restoreEmailErrorMessage.shouldHave(text(expectedError));
+        restoreEmailErrorMessage.shouldBe(visible.because("Сообщение об ошибке восстановления email не отображается"));
+        restoreEmailErrorMessage.shouldHave(text(expectedError).because("Текст сообщения об ошибке не соответствует ожидаемому: " + expectedError));
         return this;
     }
 }

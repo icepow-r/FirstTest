@@ -14,34 +14,34 @@ public class OkAuthPage {
     private final SelenideElement restoreAccessButton = $("[data-l='t,restore']");
 
     public OkAuthPage enterCredentials(String login, String password) {
-        loginInput.shouldBe(visible).setValue(login);
-        passwordInput.shouldBe(visible).setValue(password);
+        loginInput.shouldBe(visible.because("Поле для ввода логина не отображается")).setValue(login);
+        passwordInput.shouldBe(visible.because("Поле для ввода пароля не отображается")).setValue(password);
         return this;
     }
 
     public OkAuthPage loginClick() {
-        loginButton.shouldBe(visible).click();
+        loginButton.shouldBe(visible.because("Кнопка входа не отображается")).click();
         return this;
     }
 
     public OkAuthPage checkErrorMessage(String expectedError) {
-        errorMessage.shouldBe(visible);
-        errorMessage.shouldHave(text(expectedError));
+        errorMessage.shouldBe(visible.because("Сообщение об ошибке не отображается"));
+        errorMessage.shouldHave(text(expectedError).because("Текст сообщения об ошибке не соответствует ожидаемому: " + expectedError));
         return this;
     }
 
     public OkAuthPage checkFocusOnPassword() {
-        passwordInput.shouldBe(focused);
+        passwordInput.shouldBe(focused.because("Фокус не находится на поле пароля"));
         return this;
     }
 
     public OkAuthPage checkRestoreAccessMessage() {
-        restoreAccessMessage.shouldBe(visible);
+        restoreAccessMessage.shouldBe(visible.because("Сообщение о восстановлении доступа не отображается"));
         return this;
     }
 
     public RestoreAccessPage restoreAccessButtonClick() {
-        restoreAccessButton.shouldBe(visible).click();
+        restoreAccessButton.shouldBe(visible.because("Кнопка восстановления доступа не отображается")).click();
         return new RestoreAccessPage();
     }
 }
